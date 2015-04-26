@@ -1,0 +1,41 @@
+The goal of this app is to predict the next word, given a partial English sentence.  
+
+This Shiny app was developed for the *Capstone Project*  of the 
+[Johns Hopkins Coursera Data Science 
+Specialization](https://www.coursera.org/specialization/jhudatascience/1?utm_medium=listingPage). This Capstone Project is designed in partnership with [Swiftkey](http://swiftkey.com/).
+
+
+###  How to use the application. ###
+
+<ol>
+<li> The user enters a partial sentence in the <strong>text input field</strong> on the right.</li>
+<li> The <strong>predicted word</strong> appears in red. Sometimes the prediction is a number (coded as NUM) or a year (coded as YEAR) or a word in a precompiled list of words to remove (e.g. profanities, coded as PROFANITY).</li>
+<li> Below the predicted word a table contains an <strong>extended prediction</strong> with the most probable words, and their assigned probabilities. A <strong>slider</strong> on the left controls the number of predicted words (up to 20).</li>
+<li> A <strong>checkbox</strong> on the left switches the profanity filter on and off.</li>
+</ol>
+
+
+### How does it work?
+
+<p>In short, the model takes the last few words of a sentence (a 4-gram if four words are used, 3-gram for three words, etc.) and uses statistics about a large collection of English sentences to find the most probable next word, given that set of sentences.</p> 
+
+<p>Technically, the probabilities displayed by the app are assigned using a <a href="http://en.wikipedia.org/wiki/N-gram">5-gram model</a>  with smoothing in the form of discounting for low frequency words, and a careful implementation of the <a href="http://en.wikipedia.org/wiki/Katz%27s_back-off_model">Katz backoff</a> strategy (sadly, due to a <a href="http://www.cs.colorado.edu/~martin/SLP/Errata/SLP2-PH-Errata.html">errata in the popular book by Jurafsky and Martin</a>, there are many wrong descriptions of Katz Backoff posted on the web).  </p>  
+
+<p>
+The resulting language model is stored in a set of data files: a file for unigrams, a file for bigrams, etc. The information in these files is similar to the <a href="http://www.speech.sri.com/projects/srilm/manpages/ngram-format.5.html">ARPA format files</a> for n-gram models. The largest file in the model is the 35Mb trigram file. The complete 5-gram model size is 90Mb in disk space and   
+</p>
+
+
+### References and GitHub Repository. ###
+
+- The GitHub repository with further documentation for this app can be found at:  
+[https://github.com/fss14142/CourseraJHUDataScienceCapstone](https://github.com/fss14142/CourseraJHUDataScienceCapstone)
+
+- Martin, J. H., & Jurafsky, D. (2009). Speech and language processing. Pearson International Edition. ISBN 978-0135041963
+
+- Katz, S. (1987). *Estimation of probabilities from sparse data for the language model component of a speech recognizer*. Acoustics, Speech and Signal Processing, IEEE Transactions on, 35(3), 400-401.
+
+- Stanford Coursera Course for Natural Language Pro`cessing (https://www.coursera.org/course/nlp)
+
+
+
